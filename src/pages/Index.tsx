@@ -35,7 +35,7 @@ const Index = () => {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-smooth">
               About
             </a>
-            <Button variant="outline" size="sm">Sign In</Button>
+            <Button variant="outline" size="sm" onClick={() => navigate('/signin')}>Sign In</Button>
           </nav>
         </div>
       </header>

@@ -101,7 +101,7 @@ const SearchResults = () => {
             </button>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Button variant="outline" size="sm">Sign In</Button>
+            <Button variant="outline" size="sm" onClick={() => navigate('/signin')}>Sign In</Button>
           </nav>
         </div>
       </header>
