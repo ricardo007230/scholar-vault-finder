@@ -2,9 +2,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, BookOpen, Database, Users, TrendingUp, Star, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-research.jpg";
 
 const Index = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const query = formData.get('search') as string;
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-science">
       {/* Header */}
@@ -45,19 +57,20 @@ const Index = () => {
               </p>
               
               {/* Search Bar */}
-              <div className="flex gap-2 mb-8">
+              <form onSubmit={handleSearch} className="flex gap-2 mb-8">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                   <Input 
+                    name="search"
                     placeholder="Search papers, authors, topics..." 
                     className="pl-10 h-12 text-lg shadow-card border-accent"
                   />
                 </div>
-                <Button variant="hero" size="lg" className="h-12 px-8">
+                <Button type="submit" variant="hero" size="lg" className="h-12 px-8">
                   <Search className="mr-2 h-5 w-5" />
                   Search
                 </Button>
-              </div>
+              </form>
 
               <div className="flex gap-4">
                 <Button variant="research" size="lg">
