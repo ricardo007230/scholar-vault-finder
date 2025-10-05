@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, BookOpen, Database, Users, TrendingUp, Star, Zap } from "lucide-react";
+import { Search, BookOpen, Database, Users, TrendingUp, Star, Zap, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import heroImage from "@/assets/hero-research.jpg";
 
 const Index = () => {
@@ -35,7 +41,22 @@ const Index = () => {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-smooth">
               About
             </a>
-            <Button variant="outline" size="sm" onClick={() => navigate('/signin')}>Sign In</Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm">
+                  Sign In
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => navigate('/signin')}>
+                  Sign in as User
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate('/admin/signin')}>
+                  Sign in as Admin
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       </header>
