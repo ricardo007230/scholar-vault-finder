@@ -4,8 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Search, BookOpen, Calendar, Users, ExternalLink, Star, Filter } from "lucide-react";
+import { Search, BookOpen, Calendar, Users, ExternalLink, Star, Filter, ChevronDown } from "lucide-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 
 // Mock data for search results
@@ -101,7 +107,22 @@ const SearchResults = () => {
             </button>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Button variant="outline" size="sm" onClick={() => navigate('/signin')}>Sign In</Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm">
+                  Sign In
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => navigate('/signin')}>
+                  Sign in as User
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate('/admin/signin')}>
+                  Sign in as Admin
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       </header>
